@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container.form-group{
+            width:40%;
+            margin-left:auto;
+            margin-right: auto;
+            border-style: solid;
+            border-radius: 5px;
+            border-width: 2px;
+            border-color: black;
+
+        }
+        label{
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container form-group">
+        <h1 class="text-center">Register</h1>
+        <form   id="signupForm">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" class="form-control my-10" placeholder="enter name">
+            </div>
+            <div>
+                <label for="Password">Password:</label>
+                <input type="text" id="Password" class="form-control mt-5" placeholder="enter Pass">
+            </div>
+           
+            <div >
+                <label for="pin">Pincode:</label>
+                <input type="text" id="pin" class="form-control mt-5" placeholder="enter pin">
+            </div>
+            <div>
+                <label for="mail">Email:</label>
+                <input type="email" id="mail" class="form-control mt-5" placeholder="enter email">
+            </div>
+            <div>
+                <label for="num">Phone Number:</label>
+                <input type="text" id="num" class="form-control" placeholder="enter Phone Number">
+            </div>
+            <div>
+                <label for="add">Address:</label><br>
+                <input type="text" id="add" class="form-control" placeholder="enter your address">
+
+            </div>
+
+            <div style="margin:10px; " class="text-center">
+                <button type="button" onclick="signup()" class="btn btn-info ">submit</button>
+            </div>
+
+            
+
+        </form>
+
+    </div>
+    <script>
+        function signup(){
+            var username = document.getElementById("name").value.trim();
+            var email = document.getElementById("mail").value.trim();
+            var password = document.getElementById("Password").value.trim();
+            var phone = document.getElementById("num").value.trim();
+            var address = document.getElementById("add").value.trim();
+            var pincode=document.getElementById("pin").value.trim();
+
+            var emailcheck = /.+@.+\..+/;
+            
+            var pincheck = /^\d{6}$/;
+
+            if (username === "" || email === "" || password === "" || phone === ""  || pincode === "") {
+                alert("Enter all required fields");
+            } else if (!emailcheck.test(email)) {
+                alert("Enter a valid email address");
+            } 
+            else if (!pincheck.test(pincode)) {
+                alert("Pincode must be a 6-digit number");
+            } else {
+                var userdata = {
+                     username: username, email: email, password: password , phone: phone,address:address,pincode:pincode ,
+                    };
+                localStorage.setItem('userData', JSON.stringify(userdata));
+                // console.log(JSON.stringify(userData))
+                window.location.href = "profile1.html";
+            }
+
+            
+            
+        }
+
+
+
+    </script>
+    
+</body>
+</html>
